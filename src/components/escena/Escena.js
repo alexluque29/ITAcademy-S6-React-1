@@ -1,9 +1,11 @@
 import React from "react"
+import { Border } from '../../styled';
+
 
 export default function Escena(props) {
     return (
-        <div>
+        <Border>
         <p>{props.texto}</p>
-        </div>
+        </Border>
     )
 }   
