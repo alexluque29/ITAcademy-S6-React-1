@@ -3,9 +3,10 @@ import { Border } from '../../styled';
 
 
 export default function Escena(props) {
+
     return (
-        <Border>
-        <p>{props.texto}</p>
+        <Border selected={props.selected}>
+        <p>{props.texto} {props.posicion} </p>
         </Border>
     )
 }   
