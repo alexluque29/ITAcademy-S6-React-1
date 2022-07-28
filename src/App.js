@@ -1,23 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Escena from "./components/escena/Escena";
+import textos from "./textos";
+import Intro from "./components/escena/intro";
+import { ButStyle, Principal } from "./styled";
+import { useState } from "react";
 
 function App() {
+  const [posicion, setPosicion] = useState(0);
+  const [mostrar, setMostrar] = useState(false);
+  const background = textos[posicion].img;
+  const textItems = textos.map((escena, index) => {
+    const selected = posicion === index;
+    return <Escena selected={selected} texto={escena.texto} />;    
+  });
+
+  function cambiarPosicion(i) {
+    setPosicion((prePosition) => {
+      if (prePosition + i > textos.length - 1 || prePosition + i < 0)
+        return prePosition;
+        return prePosition + i;
+    });
+  }
+
+  function EntrarApp() {
+    if (!mostrar) {
+      return <Intro setMostrar={setMostrar} />;
+    }
+
+    return (
+      <Principal img={background}>
+        <div className="header">
+          <ButStyle onClick={() => cambiarPosicion(-1)}>Anterior</ButStyle>
+          <ButStyle onClick={() => cambiarPosicion(1)}>Següent</ButStyle>
+        </div>
+        <div>{textItems}</div>
+      </Principal>
+    );
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <EntrarApp />
     </div>
   );
 }
