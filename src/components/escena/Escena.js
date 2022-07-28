@@ -1,12 +1,11 @@
-import React from "react"
-import { Border } from '../../styled';
+import { Border } from "../../styled";
 
-
-export default function Escena(props) {
-
-    return (
-        <Border selected={props.selected}>
-        <p>{props.texto} {props.posicion} </p>
-        </Border>
-    )
-}   
+export default function Escena({ selected, texto, posicion }) {
+  return (
+    <Border selected={selected}>
+      <p>
+        {texto} {posicion}
+      </p>
+    </Border>
+  );
+}
